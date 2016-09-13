@@ -1,0 +1,21 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "css/primer.min.css",
+      "octicons/octicons.min.css",
+      "css/passwd.min.css",
+      "favicon.ico",
+      "favicon-72x72.png",
+      "favicon-114x114.png",
+      "js/mui.min.js",
+      "js/jquery.min.js",
+      "js/clipboard.min.js",
+      "js/sha512.js",
+      "js/jquery.qrcode.min.js",
+      "js/passwd.js"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}

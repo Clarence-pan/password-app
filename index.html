@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" id="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <!--<link href="css/mui.min.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="css/primer.min.css">
+    <link rel="stylesheet" href="octicons/octicons.min.css">
+    <link rel="stylesheet" href="css/passwd.css">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon-72x72.png?v2">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon-114x114.png?v2">
+    <title>密码生成器</title>
+    <script src="js/mui.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+<div class="passwd-form">
+    <div class="passwd-form-header">
+        <h1>
+            <div class="logo">
+                <svg aria-hidden="true" class="octicon octicon-key" height="48" version="1.1" viewBox="0 0 16 16"
+                     width="48">
+                    <path d="M12.83,2.17 C12.08,1.42 11.14,1.03 10,1 C8.87,1.03 7.92,1.42 7.17,2.17 C6.42,2.92 6.04,3.86 6.01,5 C6.01,5.3 6.04,5.59 6.1,5.89 L0,12 L0,13 L1,14 L3,14 L4,13 L4,12 L5,12 L5,11 L6,11 L6,10 L8,10 L9.09,8.89 C9.39,8.97 9.68,9 10,9 C11.14,8.97 12.08,8.58 12.83,7.83 C13.58,7.08 13.97,6.14 14,5 C13.97,3.86 13.58,2.92 12.83,2.17 L12.83,2.17 Z M11,5.38 C10.23,5.38 9.62,4.77 9.62,4 C9.62,3.23 10.23,2.62 11,2.62 C11.77,2.62 12.38,3.23 12.38,4 C12.38,4.77 11.77,5.38 11,5.38 L11,5.38 Z"></path>
+                </svg>
+            </div>
+            	密码生成器
+            <a class="help-trigger" href="#help"><i class="octicon octicon-question"></i></a>
+        </h1>
+    </div>
+    <div class="passwd-form-body">
+        <div class="input-group">
+            <label for="ID">用户名:</label>
+            <input id="ID" class="form-control" type="text" placeholder="用户名/手机号/E-Mail"/>
+        </div>
+        <div class="input-group">
+            <label for="APP">网站/APP:</label>
+            <input id="APP" class="form-control" type="text" placeholder="网站或APP的名称"/>
+        </div>
+        <div class="input-group">
+            <label for="KEY">密钥:</label>
+            <input id="KEY" class="form-control" type="password" placeholder="不能告诉别人的秘密">
+        </div>
+        <div class="form-group">
+            <input id="LENGTH" class="form-control " type="number" value="12"/>
+            <select id="TYPE" class="">
+                <option value="0123456789">纯数字</option>
+                <option value="abcdefghijklmnopqrstuvwxyz0123456789">小写字母+数字</option>
+                <option value="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" selected="selected" >字母+数字</option>
+                <option value="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.+!@_-" >字母+数字+符号</option>
+                <option value="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~`!@#$%^&*()_+-={}[]|\:;',./<>?">所有可打印字符</option>
+            </select>
+            <button id="generateBtn" type="button" class="btn btn-primary btn-block">生成</button>
+        </div>
+        <div class="form-group">
+            <div class="form-actions">
+            </div>
+        </div>
+        <div class="input-group">
+            <input id="passwd" class="form-control" type="text" placeholder="生成的密码" readonly>
+            <span class="input-group-button">
+                <button id="copyBtn" class="btn" data-clipboard-target="#passwd">
+                    <span class="octicon octicon-clippy"></span>
+                </button>
+            </span>
+        </div>
+        <div>
+            <div id="qrcode"></div>
+        </div>
+    </div>
+    <div id="help" style="display: none">
+        <h3><i class="octicon octicon-question"></i> 如何使用？</h3>
+        <p>
+            这个是一个密码生成器，用于生成密码。<br/>
+            根据提示，输入您的用户名、网站/APP的名称和您的密钥（秘密代码），然后点击【生成】按钮，
+            它将通过SHA-512将你输入的用户名、网站/APP的名称和密钥等信息进行HASH生成出一个足够复杂的密码。<br/>
+            你可以放心地将这个密码用在对应的网站上。
+        </p>
+
+        <h3><i class="octicon octicon-question"></i> 我需要记住生成的密码吗？</h3>
+        <p>
+            你不需要记住生成的密码 —— 你只需要记住你的“密钥”就可以了 —— 一定要注意，不要泄漏你的“密钥”给任何人。<br/>
+            当然，你的用户名、对应的网站/APP名称、密码的长度和字典也都需要记住 —— 相信这些东东一定比密码好记多了。
+        </p>
+
+        <h3><i class="octicon octicon-question"></i> 你这个网站安全吗？会不会偷偷记录我的密码？</h3>
+        <p>
+            你放心，本网站绝不会记录你的密码。<br/>
+            此页面属于静态页面，所有的计算都在你的手机上完成，不会传输你的用户名和密码等个人信息到服务器。<br/>
+            如果你还不放心，尽可以到此工具的开源代码库去审查对应的代码：<a target="_blank" href="https://github.com/Clarence-pan/password-app">github.com/Clarence-pan/password-app</a>.
+        </p>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/clipboard.min.js"></script>
+<script src="js/sha512.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
+<script src="js/passwd.js"></script>
+</body>
+
+</html>
