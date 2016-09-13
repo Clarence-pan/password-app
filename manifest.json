@@ -214,6 +214,7 @@
 	  "js/sha_dev.js",
 	  "octicons/octicons.css",
 	  "README.md",
-	  "css/passwd.css"
+	  "css/passwd.css",
+	  "LICENSE"
 	]
 }
