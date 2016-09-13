@@ -21,3 +21,10 @@
 - Generate Password:
 
 Information -> JSON Encode -> SHA-512 -> BYTES -> [type[x], ...]
+
+
+# About The APP Wrapper
+
+It is packaged by [DCloud](http://dcloud.io) HBuilder.
+
+
